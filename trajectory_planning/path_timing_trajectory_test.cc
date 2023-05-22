@@ -57,7 +57,6 @@ using ::testing::ElementsAreArray;
 using ::testing::Pointwise;
 
 constexpr bool kVerboseDebugPrinting = true;
-constexpr double kSmall = 1e-4;
 constexpr size_t kNDof = 3;
 constexpr size_t kNumSamples = 1000;
 constexpr absl::Duration kTimeStep = absl::Milliseconds(4);
@@ -870,7 +869,7 @@ TEST_P(PathTimingTrajectoryTest, SwitchToNewCartesianWaypointPathWorks) {
   // Modify existing path.
   ASSERT_OK(path->SwitchToWaypointPath(
       stopping_path_parameter, new_pose_waypoints, new_joint_waypoints));
-  // Set initial velocity such that the trajectory's velocity is continuous.
+  // Set initial velsocity such that the trajectory's velocity is continuous.
   ASSERT_OK_AND_ASSIGN(const VectorXd initial_velocity,
                        trajectory->GetVelocityAtTime(start_time));
   ASSERT_OK(path->SetInitialVelocity(initial_velocity));

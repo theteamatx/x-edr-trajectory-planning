@@ -206,7 +206,8 @@ int PathTimingTrajectoryOptions::GetMaxPlanningIterations() const {
 PathTimingTrajectory::PathTimingTrajectory(
     const PathTimingTrajectoryOptions& options)
     : options_(options),
-      time_step_sec_(options.GetTimeStep() / absl::Seconds(1)) {
+      time_step_sec_(TimeToSec(absl::time_internal::FromUnixDuration(
+          options.GetTimeStep()))) {
   Reset();
 }
 
