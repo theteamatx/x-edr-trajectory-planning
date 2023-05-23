@@ -229,7 +229,8 @@ absl::Status TimeableCartesianSplinePath::SwitchToWaypointPath(
   std::vector<eigenmath::Vector3d> translation_waypoints;
   translation_waypoints.reserve(pose_waypoints.size());
   std::transform(pose_waypoints.begin(), pose_waypoints.end(),
-                 translation_waypoints.begin(), kExtractTranslation);
+                 std::back_inserter(translation_waypoints),
+                 kExtractTranslation);
   const auto translation_projection_status = ProjectPointOnPath(
       absl::Span<const eigenmath::Vector3d>(translation_waypoints),
       switch_translation);

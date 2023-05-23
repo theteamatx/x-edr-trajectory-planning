@@ -57,7 +57,6 @@ using ::testing::ElementsAreArray;
 using ::testing::Pointwise;
 
 constexpr bool kVerboseDebugPrinting = true;
-constexpr double kSmall = 1e-4;
 constexpr size_t kNDof = 3;
 constexpr size_t kNumSamples = 1000;
 constexpr absl::Duration kTimeStep = absl::Milliseconds(4);

@@ -1,0 +1,6 @@
+[submodule "third_party/x-edr-eigenmath"]
+	path = third_party/x-edr-eigenmath
+	url = https://github.com/theteamatx/x-edr-eigenmath.git
+[submodule "third_party/x-edr-genit"]
+	path = third_party/x-edr-genit
+	url = https://github.com/theteamatx/x-edr-genit.git

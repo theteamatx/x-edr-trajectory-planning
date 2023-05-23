@@ -22,20 +22,20 @@ http_archive(
 )
 
 abseil_ref = "refs/tags"
-abseil_ver = "20230125.0"
+abseil_ver = "20230125.3"
 http_archive(
     name = "com_google_absl",
-    sha256 = "3ea49a7d97421b88a8c48a0de16c16048e17725c7ec0f1d3ea2683a2a75adc21",
+    sha256 = "5366d7e7fa7ba0d915014d387b66d0d002c03236448e1ba9ef98122c13b35c36",
     strip_prefix = "abseil-cpp-%s" % abseil_ver,
     url = "https://github.com/abseil/abseil-cpp/archive/%s/%s.tar.gz" % (abseil_ref, abseil_ver),
 )
 
 local_repository(
     name = "eigenmath",
-    path = "third_party/eigenmath",
+    path = "third_party/x-edr-eigenmath",
 )
 
 local_repository(
     name = "genit",
-    path = "third_party/genit",
+    path = "third_party/x-edr-genit",
 )

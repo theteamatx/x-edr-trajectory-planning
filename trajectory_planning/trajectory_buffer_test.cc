@@ -513,14 +513,14 @@ TEST(TrajectorBuffer, GetPositionAtTime) {
   // appended above.
   for (int i = 0; i < trajectory.times.size(); ++i) {
     ASSERT_OK_AND_ASSIGN(
-        const VectorXd& position,
+        const VectorXd position,
         buffer->GetPositionAtTime(TimeFromSec(trajectory.times[i])));
 
     EXPECT_THAT(position, IsApprox(trajectory.positions[i], 1e-10))
         << " i= " << i << " trajectory size: " << trajectory.times.size();
 
     ASSERT_OK_AND_ASSIGN(
-        const VectorXd& velocity,
+        const VectorXd velocity,
         buffer->GetVelocityAtTime(TimeFromSec(trajectory.times[i])));
     EXPECT_THAT(velocity, IsApprox(trajectory.velocities[i], 1e-10))
         << " i= " << i << " trajectory size: " << trajectory.times.size();
