@@ -25,6 +25,8 @@
 #include <vector>
 
 #include "absl/algorithm/container.h"
+#include "absl/log/absl_check.h"
+#include "absl/log/absl_log.h"
 #include "absl/status/status.h"
 #include "absl/time/time.h"
 #include "eigenmath/manifolds.h"
@@ -62,11 +64,6 @@ constexpr size_t kNumSamples = 1000;
 constexpr absl::Duration kTimeStep = absl::Milliseconds(4);
 constexpr absl::Duration kReplanInterval = absl::Milliseconds(200);
 constexpr absl::Duration kHorizon = absl::Milliseconds(750);
-
-#define CHECK_WITH_MSG(condition, error_message, args...) \
-  char buffer[256];                                       \
-  snprintf(buffer, 256, error_message, args);             \
-  ABSL_CHECK_IMPL((condition), buffer);
 
 #define ASSERT_OK_AND_ASSIGN(dest, call_result) \
   ASSERT_TRUE(call_result.ok());                \
@@ -563,9 +560,7 @@ absl::Status FakePathIK(const eigenmath::VectorXd& initial_value,
                         const std::vector<VectorXd>& joint,
                         std::vector<VectorXd>* solution) {
   CHECK(solution != nullptr);
-  CHECK_WITH_MSG(pose.size() == joint.size(),
-                 "pose.size(): %zu, joint.size() :%zu", pose.size(),
-                 joint.size());
+  ABSL_CHECK_EQ(pose.size(), joint.size());
   solution->resize(pose.size());
   for (int idx = 0; idx < pose.size(); idx++) {
     (*solution)[idx].resize(kFakeDofs);

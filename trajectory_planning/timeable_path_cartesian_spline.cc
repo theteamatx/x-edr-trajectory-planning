@@ -22,6 +22,7 @@
 #include <vector>
 
 #include "absl/log/log.h"
+#include "absl/log/absl_check.h"
 #include "absl/status/status.h"
 #include "absl/strings/str_cat.h"
 #include "absl/strings/substitute.h"
@@ -34,11 +35,6 @@ namespace trajectory_planning {
 
 namespace {
 constexpr double kSmall = 1e-4;
-
-#define CHECK_WITH_MSG(condition, error_message, args...) \
-  char buffer[256];                                       \
-  snprintf(buffer, 256, error_message, args);             \
-  ABSL_CHECK_IMPL((condition), buffer);
 
 void ComputePathDerivatives(
     const std::vector<eigenmath::VectorXd>& path, double delta_parameter,
@@ -645,24 +641,19 @@ double TimeableCartesianSplinePath::GetParameterEnd() const {
 
 const eigenmath::VectorXd& TimeableCartesianSplinePath::GetPathPositionAt(
     size_t n) const {
-  CHECK_WITH_MSG(n < path_position_.size(), "Have %zu samples, but n=%zu.",
-                 path_position_.size(), n);
+  ABSL_CHECK_LT(n, path_position_.size());
   return path_position_[n];
 }
 
 const eigenmath::VectorXd&
 TimeableCartesianSplinePath::GetFirstPathDerivativeAt(size_t n) const {
-  CHECK_WITH_MSG(n < first_path_derivative_.size(),
-                 "Have %zu samples, but n=%zu.", first_path_derivative_.size(),
-                 n);
+  ABSL_CHECK_LT(n, first_path_derivative_.size());
   return first_path_derivative_[n];
 }
 
 const eigenmath::VectorXd&
 TimeableCartesianSplinePath::GetSecondPathDerivativeAt(size_t n) const {
-  CHECK_WITH_MSG(n < second_path_derivative_.size(),
-                 "Have %zu samples, but n=%zu.", second_path_derivative_.size(),
-                 n);
+  ABSL_CHECK_LT(n, second_path_derivative_.size());
   return second_path_derivative_[n];
 }
 
