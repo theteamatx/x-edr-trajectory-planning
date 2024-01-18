@@ -27,9 +27,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-      with:
-        token: ${{secrets.X_EDR_REPO_PAK}}
-        submodules: 'true'
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL

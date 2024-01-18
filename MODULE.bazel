@@ -1,0 +1,45 @@
+###############################################################################
+# Bazel now uses Bzlmod by default to manage external dependencies.
+# Please consider migrating your external dependencies from WORKSPACE to MODULE.bazel.
+#
+# For more details, please check https://github.com/bazelbuild/bazel/issues/18958
+###############################################################################
+
+module(
+    name = "x_edr_trajectory_planning",
+)
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+bazel_dep(name = "abseil-cpp", version = "20230802.0", repo_name = "com_google_absl")
+
+bazel_dep(name = "rules_cc", version = "0.0.9")
+
+bazel_dep(name = "rules_proto", version = "6.0.0-rc1")
+
+bazel_dep(name = "googletest", version = "1.14.0", repo_name = "com_google_googletest")
+
+
+bazel_dep(name = "eigen", version = "3.4.0")
+
+# GenIt, required for eigenmath below.
+_GENIT_VERSION = "1.0.0"
+http_archive(
+    name = "x_edr_genit",
+    sha256 = "ab1bbb15ecbe86c5c3888a12c56fe88fac416f2f305acaf1bbf7f68c3d429851",
+    strip_prefix = "x-edr-genit-%s" % _GENIT_VERSION,
+    urls = [
+        "https://github.com/theteamatx/x-edr-genit/archive/refs/tags/v%s.tar.gz" % _GENIT_VERSION,
+    ],
+)
+
+# Eigenmath
+_EIGENMATH_VERSION = "1.0.0"
+http_archive(
+    name = "x_edr_eigenmath",
+    sha256 = "180bf186214b37190e3f26204a271d214b503b25bd22d4228d8f32e7c7151e05",
+    strip_prefix = "x-edr-eigenmath-%s" % _EIGENMATH_VERSION,
+    urls = [
+        "https://github.com/theteamatx/x-edr-eigenmath/archive/refs/tags/v%s.tar.gz" % _EIGENMATH_VERSION,
+    ],
+)

@@ -21,7 +21,7 @@ cc_library(
         "@com_google_absl//absl/status",
         "@com_google_absl//absl/time",
         "@com_google_absl//absl/types:span",
-        "@eigenmath//eigenmath",
+        "@x_edr_eigenmath//eigenmath",
     ],
 )
 
@@ -33,7 +33,7 @@ cc_test(
     deps = [
         ":splines",
         "@com_google_googletest//:gtest_main",
-        "@eigenmath//eigenmath:matchers",
+        "@x_edr_eigenmath//eigenmath:matchers",
     ],
 )
 
@@ -49,8 +49,8 @@ cc_test(
         "@com_google_absl//absl/time",
         "@com_google_absl//absl/types:span",
         "@com_google_googletest//:gtest_main",
-        "@eigenmath//eigenmath",
-        "@eigenmath//eigenmath:matchers",
+        "@x_edr_eigenmath//eigenmath",
+        "@x_edr_eigenmath//eigenmath:matchers",
     ],
 )
 
@@ -65,8 +65,8 @@ cc_test(
         "@com_google_absl//absl/strings:str_format",
         "@com_google_absl//absl/time",
         "@com_google_googletest//:gtest_main",
-        "@eigenmath//eigenmath",
-        "@eigenmath//eigenmath:matchers",
+        "@x_edr_eigenmath//eigenmath",
+        "@x_edr_eigenmath//eigenmath:matchers",
     ],
 )
 
@@ -78,7 +78,7 @@ cc_library(
     ],
     deps = [
         "@com_google_absl//absl/strings",
-        "@eigenmath//eigenmath",
+        "@x_edr_eigenmath//eigenmath",
     ],
 )
 
